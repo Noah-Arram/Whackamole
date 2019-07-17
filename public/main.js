@@ -49,6 +49,7 @@ var updateGame = function(){
 positionNumbers();
 	updaterandom()
 
+
       if (moles[random].visible === false || oldmole !== random)
 			{
 				moles[random].visible = true;
@@ -69,7 +70,7 @@ var startGame = function(){
 
 score = 0;
 
-odd = true;
+even = true;
 
 	var text = new createjs.Text("Score: 0", "40px comic sans MS", "#00000");
 	 text.x = 50;
@@ -112,7 +113,8 @@ for (let j=0 ;j < 3; j++)
 	mole.visible = false;
 	mole.addEventListener("click", function(event) {
 
-       // find out which number it is.
+  if (odd === true)
+	{
   if ((randomlist[event.target._index] + 1) % 2 === 1)
 	    {
 		    score = score + 1;
@@ -121,12 +123,34 @@ for (let j=0 ;j < 3; j++)
       }
 			else if ((randomlist[event.target._index] + 1) % 2 === 0)
 			{
+				if (score !== 0)
+				{
 				score = score - 1;
 				updatescore();
+			  }
 				event.target.visible = false;
 			}
+	  	}
+		else if (even === true)
+		{
+			if ((randomlist[event.target._index] + 1) % 2 === 0)
+			    {
+				    score = score + 1;
+				    updatescore();
+				  event.target.visible = false;
+		      }
+					else if ((randomlist[event.target._index] + 1) % 2 === 1)
+					{
+						if (score !== 0)
+						{
+						score = score - 1;
+						updatescore();
+					 }
+						event.target.visible = false;
+					}
+			  	}
 		})
-	  }
+	}
   }
 
 var reset = new createjs.Bitmap("reset.png");
@@ -142,7 +166,6 @@ if (odd === true || even === true)
 {
 	makebasic();
 }
-
 }
 
 var init = function(){
