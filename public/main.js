@@ -41,13 +41,15 @@ var positionNumbers = function(){
 	for (let i = 0; i < 9; i++)
 	{
    basicnumbers[randomlist[i]].x = holes[i].x + 150;
-		basicnumbers[randomlist[i]].y = holes[i].y + 10;
+   basicnumbers[randomlist[i]].y = holes[i].y + 10;
 	}
-};
+}
 
 var updateGame = function(){
+
 positionNumbers();
 	updaterandom()
+
 
 
       if (moles[random].visible === false || oldmole !== random)
@@ -70,7 +72,10 @@ var startGame = function(){
 
 score = 0;
 
-even = true;
+prime = true;
+square = false;
+even = false;
+odd = false;
 
 	var text = new createjs.Text("Score: 0", "40px comic sans MS", "#00000");
 	 text.x = 50;
@@ -96,6 +101,12 @@ for (let j=0 ;j < 3; j++)
 }
 }
 
+if (square === true||even === true|| odd === true|| prime === true)
+{
+	makebasic()
+
+}
+
 for (let i = 0 ;i < 3 ;i++)
 {
 for (let j=0 ;j < 3; j++)
@@ -112,8 +123,7 @@ for (let j=0 ;j < 3; j++)
 	moles.push(mole);
 	mole.visible = false;
 	mole.addEventListener("click", function(event) {
-
-  if (odd === true)
+ if (odd === true)
 	{
   if ((randomlist[event.target._index] + 1) % 2 === 1)
 	    {
@@ -131,7 +141,7 @@ for (let j=0 ;j < 3; j++)
 				event.target.visible = false;
 			}
 	  	}
-		else if (even === true)
+	  if (even === true)
 		{
 			if ((randomlist[event.target._index] + 1) % 2 === 0)
 			    {
@@ -149,8 +159,46 @@ for (let j=0 ;j < 3; j++)
 						event.target.visible = false;
 					}
 			  	}
+					else if (square === true)
+						{
+						if(randomlist[event.target._index] + 1 === 1||randomlist[event.target._index] + 1 === 4||randomlist[event.target._index] + 1 === 9)
+									{
+										score = score + 1;
+										updatescore();
+									event.target.visible = false;
+									}
+									else
+									{
+										if (score !== 0)
+										{
+										score = score - 1;
+										updatescore();
+									 }
+										event.target.visible = false;
+									}
+						}
+						else if (prime === true)
+							{
+							if(randomlist[event.target._index] + 1 === 2||randomlist[event.target._index] + 1 === 3||randomlist[event.target._index] + 1 === 5||randomlist[event.target._index] + 1 === 7)
+										{
+											score = score + 1;
+											updatescore();
+										event.target.visible = false;
+										}
+										else
+										{
+											if (score !== 0)
+											{
+											score = score - 1;
+											updatescore();
+										 }
+											event.target.visible = false;
+										}
+							}
 		})
 	}
+
+
   }
 
 var reset = new createjs.Bitmap("reset.png");
@@ -161,11 +209,6 @@ reset.addEventListener("click", function(event) {
 	score = 0;
 	updatescore()
 })
-
-if (odd === true || even === true)
-{
-	makebasic();
-}
 }
 
 var init = function(){
