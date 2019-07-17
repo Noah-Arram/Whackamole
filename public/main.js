@@ -18,6 +18,7 @@ function updaterandom()
 	random = Math.floor(Math.random() * 9)
 }
 
+
 function updatescore()
 {
 	scoretext[0].text = "Score: " + score;
@@ -39,8 +40,8 @@ var positionNumbers = function(){
 
 	for (let i = 0; i < 9; i++)
 	{
-   basicnumbers[i].x = holes[randomlist[i]].x + 150;
-		basicnumbers[i].y = holes[randomlist[i]].y + 10;
+   basicnumbers[randomlist[i]].x = holes[i].x + 150;
+		basicnumbers[randomlist[i]].y = holes[i].y + 10;
 	}
 };
 
@@ -112,12 +113,18 @@ for (let j=0 ;j < 3; j++)
 	mole.addEventListener("click", function(event) {
 
        // find out which number it is.
-
+  if ((randomlist[event.target._index] + 1) % 2 === 1)
+	    {
 		    score = score + 1;
 		    updatescore();
 		  event.target.visible = false;
-		//	alert(event.target._data.i);
-			console.log("randomlist", randomlist,  event.target._index);
+      }
+			else if ((randomlist[event.target._index] + 1) % 2 === 0)
+			{
+				score = score - 1;
+				updatescore();
+				event.target.visible = false;
+			}
 		})
 	  }
   }
@@ -145,5 +152,5 @@ var init = function(){
 	startGame();
 	//add click listeners
 	updateGame();
-	setInterval(updateGame, 1750000)
+	setInterval(updateGame, 1500)
 }
