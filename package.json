@@ -1,0 +1,29 @@
+{
+  	"name": "2simpleMigrate",
+  	"version": "0.0.1",
+  	"description": "2simpleMigrate",
+  	"main": "web.js",
+    "repository": {
+    },
+  	"scripts": {
+    	"test": "echo \"Error: no test specified\" && exit 1"
+ 	 },
+  	"author": "jgrindall",
+  	"license": "BSD",
+  	"dependencies": {
+		"mkdirp":"latest",
+		"express": "~3.5.1",
+		"formidable":"latest",
+		"simple-xml":"latest",
+		"bluebird":"latest",
+		"underscore":"latest",
+		"atob":"latest",
+		"csvtojson":"latest",
+		"iconv-lite":"latest",
+        "xmljson":"latest",
+        "archiver":"latest",
+		"url-exists":"latest"
+  	}
+}
+
+
