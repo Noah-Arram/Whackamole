@@ -3,68 +3,27 @@ var gamemode = [0,1,2,3];
 var random;
 var holes = [];
 var moles = [];
-var gamestart;
 var help = [];
 var labels = [];
 var helptexts = [];
 var score;
 var resets = [];
-var menu;
 var helptype = [0,1,2,3];
-var hmenu;
+var gametype = [0,1,2];
 var oldmole;
 var randomlist = [0,1,2,3,4,5,6,7,8];
 var basicnumbers = [];
 var titles = [];
 var backtms = [];
 var backs = [];
+var scale;
 var scoretext = [];
 var positions= [[[100,100], [450,100], [800, 100]],[[100,300], [450,300], [800, 300]],[[100,500], [450,500], [800, 500]]]
 var lpositions = [[[225,350],[575,350]],[[225,550],[575,550]]]
 
-function updaterandom()
-{
-	random = Math.floor(Math.random() * 9)
-}
-
-
-function updatescore()
-{
-	scoretext[0].text = "Score: " + score;
-
-}
-
-function makebasic()
-{
-	for (let i = 1; i < 10; i++)
-	{
-	number = new createjs.Text(i, "80px comic sans MS", "#00000");
-	stage.addChild(number);
-	basicnumbers.push(number);
-  }
-}
-
-var positionNumbers = function(){
-	randomlist =  _.shuffle(randomlist);
-
-for (let l = 0; l < 9; l++)
-{
-	if (basicnumbers[l].visible === false)
-	{
-		basicnumbers[l].visible = true;
-	}
-}
-
-	for (let i = 0; i < 9; i++)
-	{
-   basicnumbers[randomlist[i]].x = holes[i].x + 150;
-   basicnumbers[randomlist[i]].y = holes[i].y + 10;
-	}
-}
-
 var updateGame = function(){
 
-	if (gamestart === false)
+	if (gametype [0] === false)
 	{
 			for(let i = 0; i < 9; i++)
 			{
@@ -77,10 +36,10 @@ var updateGame = function(){
 		}
 
 
-if (gamestart === true)
+if (gametype [0] === true)
 {
-	positionNumbers();
-		updaterandom()
+	helpers.positionNumbers();
+		helpers.getRandom(1,9);
 
 		for(let i = 0; i < 9; i++){
 			moles[i].visible = (random === i);
@@ -98,15 +57,15 @@ if (gamestart === true)
 		backtms[0].visible = true;
 		backs[0].visible = false;
   	}
-		menu = false;
-		updaterandom()
-		updaterandom()
-		updaterandom()
+		gametype [1] = false;
+		helpers.getRandom(1,9);
+		helpers.getRandom(1,9);
+		helpers.getRandom(1,9);
 	}
 }
 
 
-	if (menu === true)
+	if (gametype [1] === true)
 	{
 		titles[0].visible = true;
 		for (let l = 0; l < 4; l++)
@@ -122,7 +81,7 @@ if (gamestart === true)
 	backtms[0].visible = false;
 
 	}
-	else if (menu === false)
+	else if (gametype [1] === false)
 	{
 		{
 			for (let l = 0; l < 4; l++)
@@ -133,7 +92,7 @@ if (gamestart === true)
 		}
 		help[0].visible = false;
 	}
-	if (hmenu === true)
+	if (gametype [2] === true)
 	{
 		help[0].visible = false;
 		titles[0].visible = false;
@@ -165,56 +124,17 @@ if (gamestart === true)
 
 
 var startGame = function(){
-	updaterandom()
+	helpers.getRandom()
 
-	makebasic()
+	spawn.basicNumbers()
 
 score = 0;
 
-for (let i = 0 ;i < 2 ;i++)
-{
-for (let j=0 ;j < 2; j++)
-{
-  var l=2*i + j;
-	var label = new createjs.Bitmap("label" + l + ".png");
-	stage.addChild(label);
-	label.x = lpositions[i][j][0];
-	label.y = lpositions[i][j][1];
-	labels.push(label);
-	label._index2 = labels.length;
-	label.addEventListener("click", function(event) {
-if (hmenu === true)
-{
-		helptype[event.target._index2 - 1] = true;
-		hmenu = false;
-	}
-	else
-	{
-		gamemode[event.target._index2 - 1] = true;
-		gamestart = true;
-		menu = false;
-		hmenu = false;
-	}
-	})
-}
-}
+spawn.createLabels()
 
-var title = new createjs.Bitmap("title.png");
-stage.addChild(title);
-title.x = 225;
-title.y = 100;
-titles.push(title);
+spawn.createTitle()
 
-var helpbutton = new createjs.Bitmap("help.png");
-stage.addChild(helpbutton);
-helpbutton.x = 465;
-helpbutton.y = 650;
-help.push(helpbutton);
-helpbutton.addEventListener("click", function(event)
-{
-	hmenu = true;
-	menu = false;
-})
+spawn.createhelpbutton()
 
 var back = new createjs.Bitmap("back.png");
 stage.addChild(back);
@@ -223,14 +143,14 @@ back.y = 650;
 backs.push(back);
 back.addEventListener("click", function(event)
 {
-	if (hmenu === true)
+	if (gametype [2] === true)
 	{
-	hmenu = false;
-	menu = true;
+	gametype [2] = false;
+	gametype [1] = true;
   }
 else
 {
-	hmenu = true;
+	gametype [2] = true;
 	for (let l = 0; l < 4; l++)
 	{
 		labels[l].visible = true;
@@ -312,7 +232,7 @@ for (let j=0 ;j < 3; j++)
   if ((randomlist[event.target._index] + 1) % 2 === 1)
 	    {
 		    score = score + 1;
-		    updatescore();
+		    helpers.updateScore();
 		  event.target.visible = false;
       }
 			else if ((randomlist[event.target._index] + 1) % 2 === 0)
@@ -320,7 +240,7 @@ for (let j=0 ;j < 3; j++)
 				if (score !== 0)
 				{
 				score = score - 1;
-				updatescore();
+				helpers.updateScore();
 			  }
 				event.target.visible = false;
 			}
@@ -330,7 +250,7 @@ for (let j=0 ;j < 3; j++)
 			if ((randomlist[event.target._index] + 1) % 2 === 0)
 			    {
 				    score = score + 1;
-				    updatescore();
+				    helpers.updateScore();
 				  event.target.visible = false;
 		      }
 					else if ((randomlist[event.target._index] + 1) % 2 === 1)
@@ -338,7 +258,7 @@ for (let j=0 ;j < 3; j++)
 						if (score !== 0)
 						{
 						score = score - 1;
-						updatescore();
+						helpers.updateScore();
 					 }
 						event.target.visible = false;
 					}
@@ -348,7 +268,7 @@ for (let j=0 ;j < 3; j++)
 						if(randomlist[event.target._index] + 1 === 1||randomlist[event.target._index] + 1 === 4||randomlist[event.target._index] + 1 === 9)
 									{
 										score = score + 1;
-										updatescore();
+										helpers.updateScore();
 									event.target.visible = false;
 									}
 									else
@@ -356,7 +276,7 @@ for (let j=0 ;j < 3; j++)
 										if (score !== 0)
 										{
 										score = score - 1;
-										updatescore();
+										helpers.updateScore();
 									 }
 										event.target.visible = false;
 									}
@@ -366,7 +286,7 @@ for (let j=0 ;j < 3; j++)
 							if(randomlist[event.target._index] + 1 === 2||randomlist[event.target._index] + 1 === 3||randomlist[event.target._index] + 1 === 5||randomlist[event.target._index] + 1 === 7)
 										{
 											score = score + 1;
-											updatescore();
+											helpers.updateScore();
 										event.target.visible = false;
 										}
 										else
@@ -374,7 +294,7 @@ for (let j=0 ;j < 3; j++)
 											if (score !== 0)
 											{
 											score = score - 1;
-											updatescore();
+											helpers.updateScore();
 										 }
 											event.target.visible = false;
 										}
@@ -392,7 +312,7 @@ resets.push(reset);
 stage.addChild(reset);
 reset.addEventListener("click", function(event) {
 	score = 0;
-	updatescore()
+	helpers.updateScore()
 
 })
 
@@ -402,8 +322,8 @@ backtm.y = 680;
 backtms.push(backtm);
 stage.addChild(backtm);
 backtm.addEventListener("click", function(event) {
-	menu = true;
-	gamestart = false;
+	gametype [1] = true;
+	gametype [0] = false;
   for (let i = 0; i < 4; i++)
 	{
 		gamemode[i] = false;
@@ -418,9 +338,11 @@ var init = function(){
 	createjs.Ticker.setFPS(60);
 	stage = new createjs.Stage("demoCanvas");
 	createjs.Ticker.addEventListener("tick", stage);
-	gamestart = false;
-	menu = true;
-	hmenu = false;
+	scale = screen.height / 780;
+	console.log(helpers.getRandom(1, 9));
+	gametype [0] = false;
+	gametype [1] = true;
+	gametype [2] = false;
 	for (let l = 0; l < 4; l++)
 	{
 	gamemode[l] = false;
