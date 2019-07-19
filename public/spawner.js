@@ -5,6 +5,7 @@ var spawn = {
   	{
   	number = new createjs.Text(i, "80px comic sans MS", "#00000");
   	stage.addChild(number);
+    number.visible = false;
   	basicnumbers.push(number);
   }
 },
@@ -22,18 +23,8 @@ createLabels:function()
   	labels.push(label);
   	label._index2 = labels.length;
   	label.addEventListener("click", function(event) {
-  if (gametype [2] === true)
-  {
-  		helptype[event.target._index2 - 1] = true;
-  		gametype [2] = false;
-  	}
-  	else
-  	{
-  		gamemode[event.target._index2 - 1] = true;
-  		gametype [0] = true;
-  		gametype [1] = false;
-  		gametype [2] = false;
-  	}
+      labelindex = event.target._index2;
+  button.labelclick()
   	})
   }
   }
@@ -56,8 +47,7 @@ createhelpbutton:function()
   help.push(helpbutton);
   helpbutton.addEventListener("click", function(event)
   {
-  	gametype [2] = true;
-  	gametype [1] = false;
+button.helpclick()
   })
 },
 createbackbutton:function()
@@ -66,25 +56,11 @@ createbackbutton:function()
   stage.addChild(back);
   back.x = 465;
   back.y = 650;
+  back.visible = false;
   backs.push(back);
   back.addEventListener("click", function(event)
   {
-  	if (gametype [2] === true)
-  	{
-  	gametype [2] = false;
-  	gametype [1] = true;
-    }
-  else
-  {
-  	gametype [2] = true;
-  	for (let l = 0; l < 4; l++)
-  	{
-  		labels[l].visible = true;
-  	helptexts[0].visible = false;
-  	helptype[l] = false;
-    }
-  }
-
+  button.backclick()
   })
 
 },
@@ -93,6 +69,7 @@ createscore:function()
   var text = new createjs.Text("Score: 0", "40px comic sans MS", "#00000");
    text.x = 50;
    text.y = 700;
+   text.visible = false;
    text.textBaseline = "alphabetic";
    stage.addChild(text);
 scoretext.push(text);
@@ -118,6 +95,7 @@ createholes:function()
   	hole.x = positions[i][j][0];
   	hole.y = positions[i][j][1];
   	stage.addChild(hole);
+    hole.visible = false
   	holes.push(hole);
   }
   }
@@ -136,78 +114,9 @@ createmoles:function()
   	moles.push(mole);
   	mole.visible = false;
   	mole.addEventListener("click", function(event) {
-   if (gamemode[0] === true)
-  	{
-    if ((randomlist[event.target._index] + 1) % 2 === 1)
-  	    {
-  		    score = score + 1;
-  		    helpers.updateScore();
-  		  event.target.visible = false;
-        }
-  			else if ((randomlist[event.target._index] + 1) % 2 === 0)
-  			{
-  				if (score !== 0)
-  				{
-  				score = score - 1;
-  				helpers.updateScore();
-  			  }
-  				event.target.visible = false;
-  			}
-  	  	}
-  	  if (gamemode[1] === true)
-  		{
-  			if ((randomlist[event.target._index] + 1) % 2 === 0)
-  			    {
-  				    score = score + 1;
-  				    helpers.updateScore();
-  				  event.target.visible = false;
-  		      }
-  					else if ((randomlist[event.target._index] + 1) % 2 === 1)
-  					{
-  						if (score !== 0)
-  						{
-  						score = score - 1;
-  						helpers.updateScore();
-  					 }
-  						event.target.visible = false;
-  					}
-  			  	}
-  					else if (gamemode[2] === true)
-  						{
-  						if(randomlist[event.target._index] + 1 === 1||randomlist[event.target._index] + 1 === 4||randomlist[event.target._index] + 1 === 9)
-  									{
-  										score = score + 1;
-  										helpers.updateScore();
-  									event.target.visible = false;
-  									}
-  									else
-  									{
-  										if (score !== 0)
-  										{
-  										score = score - 1;
-  										helpers.updateScore();
-  									 }
-  										event.target.visible = false;
-  									}
-  						}
-  						else if (gamemode[3] === true)
-  							{
-  							if(randomlist[event.target._index] + 1 === 2||randomlist[event.target._index] + 1 === 3||randomlist[event.target._index] + 1 === 5||randomlist[event.target._index] + 1 === 7)
-  										{
-  											score = score + 1;
-  											helpers.updateScore();
-  										event.target.visible = false;
-  										}
-  										else
-  										{
-  											if (score !== 0)
-  											{
-  											score = score - 1;
-  											helpers.updateScore();
-  										 }
-  											event.target.visible = false;
-  										}
-  							}
+      moles[event.target._index].visible = false;
+      moleindex =  event.target._index;
+     checker.gameChecker();
   		})
   	}
 
@@ -218,8 +127,9 @@ createresetbutton:function()
 {
   var reset = new createjs.Bitmap("reset.png");
   reset.x = 850;
-  reset.y = 680;
+  reset.y = 660;
   resets.push(reset);
+  reset.visible = false;
   stage.addChild(reset);
   reset.addEventListener("click", function(event) {
   	score = 0;
@@ -228,20 +138,16 @@ createresetbutton:function()
   })
 
 },
-createbtgbutton:function()
+createbtmbutton:function()
 {
   var backtm = new createjs.Bitmap("backtm.png");
   backtm.x = 450;
   backtm.y = 680;
   backtms.push(backtm);
+  backtm.visible = false;
   stage.addChild(backtm);
   backtm.addEventListener("click", function(event) {
-  	gametype [1] = true;
-  	gametype [0] = false;
-    for (let i = 0; i < 4; i++)
-  	{
-  		gamemode[i] = false;
-  	}
+  button.btmclick()
   })
   }
 }
