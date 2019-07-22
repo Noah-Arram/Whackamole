@@ -9,8 +9,8 @@ var button = {
     	else
     	{
     		gamemode[labelindex - 1] = true;
-    	gametype = "gamestart";
-        ui_manager.gametype0ui()
+    	gametype = "difficulty select";
+        ui_manager.difficultyselectui()
   }
 },
   backclick:function()
@@ -28,6 +28,11 @@ var button = {
      ui_manager.gametype2ui()
     helptype[l] = false;
     }
+  }
+  if (gametype === "difficulty select")
+  {
+    gametype = "menu";
+    ui_manager.gametype1ui()
   }
 
 },
@@ -51,5 +56,11 @@ helpclick:function()
 {
 gametype = "help menu";
 ui_manager. gametype2ui()
+},
+difficultyclick:function()
+{
+  gametype = "gamestart";
+  ui_manager.gametype0ui()
+  update.update()
 }
 }

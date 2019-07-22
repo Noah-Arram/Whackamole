@@ -6,15 +6,17 @@ var ui_manager = {
       {
         for (let l = 0; l <4; l++)
         {
+          for (let d = 0; d < 3; d++)
+          {
         holes[i].visible = true;
-        labels[l].visible = false;
-        titles[0].visible = false;
         scoretext[0].visible = true;
         resets[0].visible = true;
         backtms[0].visible = true;
-        help[0].visible = false;
-        update.update()
+        difficulties[d].visible = false;
+        backs[0].visible = false;
+        titles[2].visible = false;
       }
+    }
     }
     },
     gametype1ui:function()
@@ -23,7 +25,8 @@ var ui_manager = {
         {
           for (let l = 0; l <4; l++)
           {
-
+           for (let d = 0; d < 3; d++)
+           {
           holes[i].visible = false;
           labels[l].visible = true;
           titles[0].visible = true;
@@ -35,7 +38,10 @@ var ui_manager = {
           moles[i].visible = false;
           basicnumbers[i].visible = false;
           titles[1].visible = false;
+          titles[2].visible = false;
+          difficulties[d].visible = false;
         }
+      }
       }
       },
       gametype2ui:function()
@@ -66,5 +72,20 @@ var ui_manager = {
           titles[1].visible = false;
           backs[0].y = 675;
         }
+},
+difficultyselectui:function()
+{
+  for (let i = 0; i <3; i++)
+  {
+    for (let l = 0; l <4; l++)
+    {
+    labels[l].visible = false;
+    titles[0].visible = false;
+    help[0].visible = false;
+    difficulties[i].visible = true;
+    backs[0].visible = true;
+    titles[2].visible = true;
+  }
+}
 }
 }

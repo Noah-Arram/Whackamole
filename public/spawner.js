@@ -47,7 +47,15 @@ createhelptitle:function()
   htitle.y = 100;
   htitle.visible = false;
   titles.push(htitle);
-
+},
+createdifficultytitle:function()
+{
+  var dtitle = new createjs.Bitmap("difficulty title.png");
+  stage.addChild(dtitle);
+  dtitle.x = 300;
+  dtitle.y = 100;
+  dtitle.visible = false;
+  titles.push(dtitle);
 },
 createhelpbutton:function()
 {
@@ -163,5 +171,22 @@ createbtmbutton:function()
   backtm.addEventListener("click", function(event) {
   button.btmclick()
   })
+},
+createdifficultybuttons:function()
+{
+  for (let i = 0; i < 3; i ++)
+  {
+    var difficultybutton = new createjs.Bitmap(difficulty[i] + ".png");
+    difficultybutton.x = difficultyx[i];
+    difficultybutton.y = 350;
+    difficulties.push(difficultybutton);
+    difficultybutton.visible = false;
+    stage.addChild(difficultybutton)
+    difficultybutton._index3 = difficulties.length
+    difficultybutton.addEventListener("click", function(event) {
+      difficultyindex = event.target._index3;
+     button.difficultyclick()
+    })
   }
+}
 }

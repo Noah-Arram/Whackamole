@@ -12,21 +12,16 @@ var update = {
       }
 
 
-      helpers.getRandom(1,9);
-      helpers.getRandom(1,9);
-      helpers.getRandom(1,9);
+
     }
 
-
-
-
-
-  speed = 1500 - (score * 25);
+  speed = 1500 - (score * (12.5 *(difficultyindex)));
   if (speed < 750)
   {
     speed = 750;
   }
   //if score goes up by 5 speed up by 0.25sec
   setTimeout(update.update, speed);
+
   }
   }
