@@ -2,9 +2,7 @@ var update = {
   update:function()
   {
 
-    if (gametype [0] === false)
-    {
-  if (gametype [0] === true)
+  if (gametype === "gamestart")
   {
     helpers.positionNumbers();
       helpers.getRandom(1,9);
@@ -18,7 +16,7 @@ var update = {
       helpers.getRandom(1,9);
       helpers.getRandom(1,9);
     }
-  }
+
 
 
 

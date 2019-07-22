@@ -38,6 +38,17 @@ createTitle:function()
   titles.push(title);
 
 },
+
+createhelptitle:function()
+{
+  var htitle = new createjs.Bitmap("helpselectiontext.png");
+  stage.addChild(htitle);
+  htitle.x = 150;
+  htitle.y = 100;
+  htitle.visible = false;
+  titles.push(htitle);
+
+},
 createhelpbutton:function()
 {
   var helpbutton = new createjs.Bitmap("help.png");
@@ -77,12 +88,15 @@ scoretext.push(text);
 },
 createhelptext:function()
 {
-  var helpname = new createjs.Text("", "40px comic sans MS", "#00000");
+  for (let i = 0; i < 4; i++)
+  {
+  var helpname = new createjs.Text(helpcontent[i], "40px comic sans MS", "#00000");
   helpname.x = 75;
   helpname.y = 100;
   helpname.visible = false;
   stage.addChild(helpname);
   helptexts.push(helpname);
+}
 },
 createholes:function()
 {
@@ -120,7 +134,7 @@ createmoles:function()
   		})
   	}
 
-
+//
     }
 },
 createresetbutton:function()

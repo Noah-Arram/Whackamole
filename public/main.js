@@ -10,7 +10,7 @@ var score;
 var moleindex;
 var resets = [];
 var helptype = [0,1,2,3];
-var gametype = ["gamestart","menu","help menu"];
+var gametype = ["gamestart","menu","help menu", "helptext displaying"];
 var oldmole;
 var randomlist = [0,1,2,3,4,5,6,7,8];
 var basicnumbers = [];
@@ -54,6 +54,9 @@ spawn.createmoles()
 spawn.createresetbutton()
 
 spawn.createbtmbutton()
+
+spawn.createhelptitle()
+
 }
 
 var init = function(){
@@ -69,8 +72,4 @@ var init = function(){
 	gamemode[l] = false;
  }
 	startGame();
-	update.update();
-	setTimeout(update.update, speed);
 }
-
-//clwarINyerbcal(a)
