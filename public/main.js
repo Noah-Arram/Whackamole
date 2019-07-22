@@ -34,10 +34,12 @@ var lpositions = [[[225,350],[575,350]],[[225,550],[575,550]]]
 var startGame = function(){
 	helpers.getRandom()
 
-	spawn.basicNumbers()
-
 score = 0;
 speed = 1500;
+
+spawn.containers()
+
+spawn.basicNumbers()
 
 spawn.createLabels()
 
@@ -64,6 +66,8 @@ spawn.createhelptitle()
 spawn.createdifficultybuttons()
 
 spawn.createdifficultytitle()
+
+
 }
 
 var init = function(){

@@ -5,7 +5,7 @@ var spawn = {
   	{
   	number = new createjs.Text(i, "80px comic sans MS", "#00000");
   	stage.addChild(number);
-    number.visible = false;
+    basicnumberscontainer.addChild(number);
   	basicnumbers.push(number);
   }
 },
@@ -18,6 +18,7 @@ createLabels:function()
     var l=2*i + j;
   	var label = new createjs.Bitmap("label" + l + ".png");
   	stage.addChild(label);
+    labelscontainer.addChild(label);
   	label.x = lpositions[i][j][0];
   	label.y = lpositions[i][j][1];
   	labels.push(label);
@@ -36,7 +37,6 @@ createTitle:function()
   title.x = 225;
   title.y = 100;
   titles.push(title);
-
 },
 
 createhelptitle:function()
@@ -96,15 +96,11 @@ scoretext.push(text);
 },
 createhelptext:function()
 {
-  for (let i = 0; i < 4; i++)
-  {
-  var helpname = new createjs.Text(helpcontent[i], "40px comic sans MS", "#00000");
+  var helpname = new createjs.Text("", "40px comic sans MS", "#00000");
   helpname.x = 75;
   helpname.y = 100;
-  helpname.visible = false;
   stage.addChild(helpname);
   helptexts.push(helpname);
-}
 },
 createholes:function()
 {
@@ -117,7 +113,7 @@ createholes:function()
   	hole.x = positions[i][j][0];
   	hole.y = positions[i][j][1];
   	stage.addChild(hole);
-    hole.visible = false
+    holescontainer.addChild(hole);
   	holes.push(hole);
   }
   }
@@ -134,7 +130,7 @@ createmoles:function()
   	mole.y = positions[i][j][1] + offsety;
   	mole._index = moles.length;
   	moles.push(mole);
-  	mole.visible = false;
+    molescontainer.addChild(mole);
   	mole.addEventListener("click", function(event) {
       moles[event.target._index].visible = false;
       moleindex =  event.target._index;
@@ -180,13 +176,34 @@ createdifficultybuttons:function()
     difficultybutton.x = difficultyx[i];
     difficultybutton.y = 350;
     difficulties.push(difficultybutton);
-    difficultybutton.visible = false;
     stage.addChild(difficultybutton)
+    difficultycontainer.addChild(difficultybutton);
     difficultybutton._index3 = difficulties.length
     difficultybutton.addEventListener("click", function(event) {
       difficultyindex = event.target._index3;
      button.difficultyclick()
     })
   }
+},
+containers:function()
+{
+  labelscontainer = new createjs.Container();
+  stage.addChild(labelscontainer);
+
+  difficultycontainer = new createjs.Container();
+  stage.addChild(difficultycontainer);
+  difficultycontainer.visible = false;
+
+  holescontainer = new createjs.Container();
+  stage.addChild(holescontainer);
+  holescontainer.visible = false;
+
+  molescontainer = new createjs.Container();
+  stage.addChild(molescontainer);
+  molescontainer.visible = false;
+
+  basicnumberscontainer = new createjs.Container();
+  stage.addChild(basicnumberscontainer);
+  basicnumberscontainer.visible = false;
 }
 }
