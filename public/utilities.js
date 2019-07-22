@@ -1,5 +1,5 @@
 var list = [];
-var helpers = {
+var utils = {
   getRandom:function(from, to)
   {
     for (let i = from; i < to; i++)
@@ -30,5 +30,5 @@ var helpers = {
  updateScore:function()
  {
    scoretext[0].text = "Score: " + score;
+ },
  }
-}

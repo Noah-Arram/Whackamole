@@ -34,7 +34,7 @@ createTitle:function()
 {
   var title = new createjs.Bitmap("title.png");
   stage.addChild(title);
-  title.x = 225;
+  title.x = 265;
   title.y = 100;
   titles.push(title);
 },
@@ -61,7 +61,7 @@ createhelpbutton:function()
 {
   var helpbutton = new createjs.Bitmap("help.png");
   stage.addChild(helpbutton);
-  helpbutton.x = 465;
+  helpbutton.x = 500;
   helpbutton.y = 650;
   help.push(helpbutton);
   helpbutton.addEventListener("click", function(event)
@@ -151,7 +151,7 @@ createresetbutton:function()
   stage.addChild(reset);
   reset.addEventListener("click", function(event) {
   	score = 0;
-  	helpers.updateScore()
+  	utils.updateScore()
 
   })
 
@@ -174,7 +174,7 @@ createdifficultybuttons:function()
   {
     var difficultybutton = new createjs.Bitmap(difficulty[i] + ".png");
     difficultybutton.x = difficultyx[i];
-    difficultybutton.y = 350;
+    difficultybutton.y = 400;
     difficulties.push(difficultybutton);
     stage.addChild(difficultybutton)
     difficultycontainer.addChild(difficultybutton);

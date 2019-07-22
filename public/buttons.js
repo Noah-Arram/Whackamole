@@ -46,7 +46,8 @@ gametype = "menu";
       ui_manager.gametype1ui()
         gamemode[i] = false;
         score = 0;
-        helpers.updateScore()
+        utils.updateScore()
+        clearTimeout(updatetimeout);
 
 
     }
@@ -62,5 +63,6 @@ difficultyclick:function()
   gametype = "gamestart";
   ui_manager.gametype0ui()
   update.update()
+  speedchange = difficultyindex * 10;
 }
 }

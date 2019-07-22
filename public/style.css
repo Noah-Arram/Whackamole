@@ -1,9 +1,25 @@
 canvas{
+    background: green;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+body{
+  background-color: #6d2e88;
+}
+leftbanner{
+  position: absolute;
+top: 96px;
+bottom: 96px;
+left: 96px;
+}
+rightbanner{
+  position: absolute;
+  top: 96px;
+  bottom: 96px;
+  right: 96px;
 
-	border:2px solid #003;
-	background:green;
-	height: 100%;
-	width: 1100px	;
-	scale (height / 780);
-	margin: auto;
 }

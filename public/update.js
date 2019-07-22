@@ -4,8 +4,8 @@ var update = {
 
   if (gametype === "gamestart")
   {
-    helpers.positionNumbers();
-      helpers.getRandom(1,9);
+    utils.positionNumbers();
+      utils.getRandom(1,9);
 
       for(let i = 0; i < 9; i++){
         moles[i].visible = (random === i);
@@ -15,13 +15,15 @@ var update = {
 
     }
 
-  speed = 1500 - (score * (12.5 *(difficultyindex)));
+
+
+  speed = 1500 - (score * speedchange);
   if (speed < 750)
   {
     speed = 750;
   }
   //if score goes up by 5 speed up by 0.25sec
-  setTimeout(update.update, speed);
+  updatetimeout = setTimeout(update.update, speed);
 
   }
   }

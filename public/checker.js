@@ -77,7 +77,7 @@ var checker = {
 scorer:function()
 {
   score = score + 1;
-  helpers.updateScore();
+  utils.updateScore();
 event.target.visible = false;
 },
 lose:function()
@@ -85,7 +85,7 @@ lose:function()
   if (score !== 0)
   {
   score = score - 1;
-  helpers.updateScore();
+  utils.updateScore();
    }
 event.target.visible = false;
 }
