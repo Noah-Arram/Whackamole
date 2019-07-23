@@ -2,7 +2,12 @@ const defaultspeed = 1500;
 
 const minspeed = 750;
 
-const gamemode = ["odd", "even", "square", "prime"];
+const GAMEMODE_ODD = 0;
+const GAMEMODE_EVEN = 1;
+const GAMEMODE_SQUARE = 2;
+const GAMEMODE_PRIME = 3;
+
+//bit later [t, f, f, f]
 
 const helptype = [0, 1, 2, 3];
 
@@ -57,7 +62,6 @@ var rightbanner = document.getElementById("rightbanner")
 export {
   defaultspeed,
   minspeed,
-  gamemode,
   helptype,
   offsetx,
   offsety,
@@ -72,5 +76,9 @@ export {
   GAMETYPE_HMENU,
   GAMETYPE_GAMESTART,
   GAMETYPE_HTEXTDISPLAYING,
-  GAMETYPE_DIFFICULTYSELECT
+  GAMETYPE_DIFFICULTYSELECT,
+  GAMEMODE_ODD,
+  GAMEMODE_EVEN,
+  GAMEMODE_SQUARE,
+  GAMEMODE_PRIME
 }

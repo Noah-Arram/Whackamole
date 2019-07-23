@@ -14,7 +14,7 @@ var button = {
       ui_manager.helptextui()
       Vars.gametype = Constants.GAMETYPE_HTEXTDISPLAYING;
     } else {
-      Constants.gamemode[Vars.labelindex - 1] = true;
+      Vars.gamemode = Vars.labelindex - 1;
       Vars.gametype = Constants.GAMETYPE_DIFFICULTYSELECT;
       ui_manager.difficultyselectui()
     }
@@ -42,7 +42,7 @@ var button = {
     for (let i = 0; i < 4; i++) {
       for (let l = 0; l < 9; l++) {
         ui_manager.gametype1ui()
-        Constants.gamemode[i] = false;
+        Vars.gamemode = null;
         Vars.score = 0;
         utils.updateScore()
         clearTimeout(Vars.updatetimeout);

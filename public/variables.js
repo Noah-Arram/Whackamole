@@ -2,12 +2,12 @@ import {
   GAMETYPE_MENU
 } from "./constants.js";
 
-var stage;
+
 var random;
+var gamemode
 var canvasH;
 var gametype;
 var canvasW;
-var holes = [];
 var moles = [];
 var help = [];
 var labels = [];
@@ -31,15 +31,16 @@ var randomlist = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
 
 const Vars = {
-  stage: stage,
+  stage: null,
   random: random,
   canvasH: canvasH,
   canvasW: canvasW,
-  holes: holes,
+  holes: [],
   moles: moles,
   help: help,
   labels: labels,
   gametype: GAMETYPE_MENU,
+  gamemode: null,
   helptexts: helptexts,
   score: score,
   speedchange: speedchange,

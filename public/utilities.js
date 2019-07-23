@@ -1,5 +1,11 @@
 import Vars from "./variables.js"
 
+import screens from "./screensize.js"
+
+import * as Constants from "./constants.js"
+
+import spawn from "./spawner.js"
+
 var list = [];
 var utils = {
   getRandom: function(from, to) {
@@ -27,6 +33,20 @@ var utils = {
   updateScore: function() {
     Vars.scoretext[0].text = "Score: " + Vars.score;
   },
+
+
+  init: function() {
+    createjs.Ticker.setFPS(120);
+    window.stage = new createjs.Stage("demoCanvas");
+    createjs.Ticker.addEventListener("tick", window.stage);
+    screens.uidetect()
+    setInterval(screens.uidetect, 1);
+    Vars.score = 0;
+    Vars.speed = 1500;
+    utils.getRandom()
+
+    spawn.spawnall()
+  }
 }
 
 export default utils;

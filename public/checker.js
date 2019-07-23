@@ -5,18 +5,20 @@ import scorer from "./scorer.js"
 
 import * as Constants from "./constants.js"
 
+import Vars from "./variables.js"
+
 var checker = {
   gameChecker: function() {
-    if (Constants.gamemode[0] === true) {
+    if (Vars.gamemode === Constants.GAMEMODE_ODD) {
       scorer.oddscorer()
     }
-    if (Constants.gamemode[1] === true) {
+    if (Vars.gamemode === Constants.GAMEMODE_EVEN) {
       scorer.evenscorer()
     }
-    if (Constants.gamemode[2] === true) {
+    if (Vars.gamemode === Constants.GAMEMODE_SQUARE) {
       scorer.squarescorer()
     }
-    if (Constants.gamemode[3] === true) {
+    if (Vars.gamemode === Constants.GAMEMODE_PRIME) {
       scorer.primescorer()
     }
   }

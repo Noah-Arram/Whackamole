@@ -30,7 +30,6 @@ var spawn = {
         label._index2 = Vars.labels.length;
         label.addEventListener("click", function(event) {
           Vars.labelindex = event.target._index2;
-          console.log(Vars.labelindex);
           button.labelclick()
         })
       }
@@ -73,7 +72,7 @@ var spawn = {
   createbackbutton: function() {
     var back = new createjs.Bitmap("back.png");
     stage.addChild(back);
-    back.x = 465;
+    back.x = 500;
     back.y = 650;
     back.visible = false;
     Vars.backs.push(back);
@@ -191,6 +190,38 @@ var spawn = {
     window.basicnumberscontainer = new createjs.Container();
     stage.addChild(basicnumberscontainer);
     basicnumberscontainer.visible = false;
+  },
+
+  spawnall: function() {
+    spawn.containers()
+
+    spawn.basicNumbers()
+
+    spawn.createLabels()
+
+    spawn.createTitle()
+
+    spawn.createhelpbutton()
+
+    spawn.createbackbutton()
+
+    spawn.createhelptext()
+
+    spawn.createscore()
+
+    spawn.createholes()
+
+    spawn.createmoles()
+
+    spawn.createresetbutton()
+
+    spawn.createbtmbutton()
+
+    spawn.createhelptitle()
+
+    spawn.createdifficultybuttons()
+
+    spawn.createdifficultytitle()
   }
 }
 
