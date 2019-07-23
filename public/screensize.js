@@ -1,7 +1,9 @@
 var screens = {
   uidetect:function()
   {
-    if (document.body.clientWidth < 1640)
+var oldwidth = document.body.clientWidth;
+
+    if (document.body.clientWidth < 1675)
     {
       leftbanner = document.getElementById("leftbanner")
       rightbanner = document.getElementById("rightbanner")
@@ -11,9 +13,8 @@ var screens = {
     else {
       leftbanner.style.display = "block";
       rightbanner.style.display = "block";
-
-
-
     }
-  }
+
 }
+}
+  

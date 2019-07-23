@@ -14,12 +14,12 @@ leftbanner{
   position: absolute;
 top: 96px;
 bottom: 96px;
-left: 96px;
+left: 10px;
 }
 rightbanner{
   position: absolute;
   top: 96px;
   bottom: 96px;
-  right: 96px;
+  right: 10px;
 
 }
