@@ -12,7 +12,7 @@
   	"license": "BSD",
   	"dependencies": {
 		"mkdirp":"latest",
-		"express": "~3.5.1",
+		"express": ">=3.11.0",
 		"formidable":"latest",
 		"simple-xml":"latest",
 		"bluebird":"latest",
