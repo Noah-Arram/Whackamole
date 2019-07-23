@@ -1,29 +1,31 @@
+import utils from "./utilities.js"
+
+import * as Constants from "./constants.js"
+
+import Vars from "./variables.js"
+
 var update = {
-  update:function()
-  {
+  update: function() {
 
-  if (gametype === "gamestart")
-  {
-    utils.positionNumbers();
-      utils.getRandom(1,9);
+    if (Vars.gametype === Constants.GAMETYPE_GAMESTART) {
+      utils.positionNumbers();
+      utils.getRandom(1, 9);
 
-      for(let i = 0; i < 9; i++){
-        moles[i].visible = (random === i);
+      for (let i = 0; i < 9; i++) {
+        Vars.moles[i].visible = (Vars.random === i);
       }
-
-
-
     }
 
 
 
-  speed = 1500 - (score * speedchange);
-  if (speed < 750)
-  {
-    speed = 750;
-  }
-  //if score goes up by 5 speed up by 0.25sec
-  updatetimeout = setTimeout(update.update, speed);
+    Vars.speed = Constants.defaultspeed - (Vars.score * Vars.speedchange);
+    if (Vars.speed < Constants.minspeed) {
+      Vars.speed = Constants.minspeed;
+    }
+    //if score goes up by 5 speed up by 0.25sec
+    Vars.updatetimeout = setTimeout(update.update, Vars.speed);
 
   }
-  }
+}
+
+export default update;
